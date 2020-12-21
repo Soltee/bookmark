@@ -1,0 +1,9 @@
+import react from 'react';
+
+const Index = () => {
+
+	return <p>Welcome! You are logged in. </p>;
+
+}
+
+export default Index;
