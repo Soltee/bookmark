@@ -9,6 +9,8 @@ use App\Models\User;
 
 use Inertia\Inertia;
 use Auth;
+use App\Http\Requests\BookmarkStoreRequest;
+use OpenGraph;
 
 class BookmarkController extends Controller
 {
@@ -26,13 +28,15 @@ class BookmarkController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for adding a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function add()
     {
-        //
+        return Inertia::render('User/Bookmark/Add', [
+                // 'auth'  => Auth::user()
+            ]);
     }
 
     /**
@@ -41,9 +45,15 @@ class BookmarkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BookmarkStoreRequest $request)
     {
-        //
+        // return $request->validated();
+        $validated = $request->validated();
+
+        $data = OpenGraph::fetch($validated['url']);
+        // $data = OpenGraph::fetch($request->url);
+// BookmarkStoreRequest
+        return $data;
     }
 
     /**

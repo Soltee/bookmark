@@ -16,7 +16,11 @@ Route::middleware(['auth', 'verified'])->group(function ()
 
 	//Bookmark
 	Route::get('/bookmarks', [BookmarkController::class, 'index'])
-								->name('bookmarks');							
+								->name('bookmarks');
+	Route::get('/bookmarks/add', [BookmarkController::class, 'add'])
+								->name('bookmarks.add');	
+	Route::post('/bookmarks', [BookmarkController::class, 'store'])
+								->name('bookmarks.preview');							
 
 });
 

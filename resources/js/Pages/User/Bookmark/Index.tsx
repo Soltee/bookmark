@@ -1,5 +1,6 @@
 import React from 'react';
 import App from '../../../Layouts/Index';
+import { InertiaLink } from '@inertiajs/inertia-react'
 
 interface Props {
 	bookmarks : Array<any>
@@ -11,6 +12,15 @@ const Index: React.FC<Props> = ({ bookmarks }) => {
 		<App>
 
 			<div>
+				<div className="flex justify-between items-center my-3">
+					<h3 className="font-bold text-xl">Bookmarks</h3>
+					<InertiaLink 
+						href="/bookmarks/add" 
+						preserveState
+						className="border-b mb-2 hover:border-gray-900"
+						>Add New Bookmark
+					</InertiaLink>
+				</div>
 
 		        <div  className=" overflow-x-auto">
 			        <div  className="inline-block min-w-full  rounded-lg overflow-hidden">

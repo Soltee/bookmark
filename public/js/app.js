@@ -52389,6 +52389,8 @@ exports.default = App;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"./User/Bookmark/Add": "./resources/js/Pages/User/Bookmark/Add.tsx",
+	"./User/Bookmark/Add.tsx": "./resources/js/Pages/User/Bookmark/Add.tsx",
 	"./User/Bookmark/Index": "./resources/js/Pages/User/Bookmark/Index.tsx",
 	"./User/Bookmark/Index.tsx": "./resources/js/Pages/User/Bookmark/Index.tsx",
 	"./User/Home": "./resources/js/Pages/User/Home.tsx",
@@ -52417,6 +52419,87 @@ webpackContext.id = "./resources/js/Pages sync recursive ^\\.\\/.*$";
 
 /***/ }),
 
+/***/ "./resources/js/Pages/User/Bookmark/Add.tsx":
+/*!**************************************************!*\
+  !*** ./resources/js/Pages/User/Bookmark/Add.tsx ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var inertia_1 = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+var Index_1 = __importDefault(__webpack_require__(/*! ../../../Layouts/Index */ "./resources/js/Layouts/Index.tsx"));
+var Add = function (_a) {
+    var _b = react_1.useState({
+        url: '',
+        title: 'Some title'
+    }), state = _b[0], setState = _b[1];
+    //
+    var handleChange = function (event) {
+        var _a;
+        setState(__assign(__assign({}, state), (_a = {}, _a[event.target.id] = event.target.value, _a)));
+    };
+    //Handle form
+    var handleForm = function (event) {
+        event.preventDefault();
+        inertia_1.Inertia.post("/bookmarks", state);
+    };
+    return (react_1.default.createElement(Index_1.default, null,
+        react_1.default.createElement("div", null,
+            react_1.default.createElement("div", { className: "mt-5 md:mt-0 md:col-span-2" },
+                react_1.default.createElement("form", { action: "#", method: "POST" },
+                    react_1.default.createElement("div", { className: "flex justify-between items-center my-3" },
+                        react_1.default.createElement("h3", { className: "font-bold text-xl" }, "New"),
+                        react_1.default.createElement("button", { onClick: handleForm, className: "border-b mb-2 hover:border-gray-900" }, "Add")),
+                    react_1.default.createElement("div", { className: "shadow sm:rounded-md sm:overflow-hidden" },
+                        react_1.default.createElement("div", { className: "px-4 py-5 bg-white space-y-6 sm:p-6" },
+                            react_1.default.createElement("div", { className: "grid grid-cols-3 gap-6" },
+                                react_1.default.createElement("label", { htmlFor: "url", className: "block text-sm font-medium text-gray-700" }, "URL"),
+                                react_1.default.createElement("div", { className: "mt-1 flex rounded-md shadow-sm" },
+                                    react_1.default.createElement("span", { className: "inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm" }),
+                                    react_1.default.createElement("input", { type: "text", id: "url", value: state.url, className: "focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300", placeholder: "www.example.com", onChange: handleChange }))))))))));
+};
+exports.default = Add;
+
+
+/***/ }),
+
 /***/ "./resources/js/Pages/User/Bookmark/Index.tsx":
 /*!****************************************************!*\
   !*** ./resources/js/Pages/User/Bookmark/Index.tsx ***!
@@ -52432,10 +52515,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var Index_1 = __importDefault(__webpack_require__(/*! ../../../Layouts/Index */ "./resources/js/Layouts/Index.tsx"));
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 var Index = function (_a) {
     var bookmarks = _a.bookmarks;
     return (react_1.default.createElement(Index_1.default, null,
         react_1.default.createElement("div", null,
+            react_1.default.createElement("div", { className: "flex justify-between items-center my-3" },
+                react_1.default.createElement("h3", { className: "font-bold text-xl" }, "Bookmarks"),
+                react_1.default.createElement(inertia_react_1.InertiaLink, { href: "/bookmarks/add", preserveState: true, className: "border-b mb-2 hover:border-gray-900" }, "Add New Bookmark")),
             react_1.default.createElement("div", { className: " overflow-x-auto" },
                 react_1.default.createElement("div", { className: "inline-block min-w-full  rounded-lg overflow-hidden" },
                     react_1.default.createElement("table", { className: "min-w-full leading-normal" },
