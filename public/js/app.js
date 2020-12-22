@@ -52365,7 +52365,8 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./Home/Index.tsc": "./resources/js/Pages/Home/Index.tsc"
+	"./Home/Index": "./resources/js/Pages/Home/Index.tsx",
+	"./Home/Index.tsx": "./resources/js/Pages/Home/Index.tsx"
 };
 
 
@@ -52390,14 +52391,29 @@ webpackContext.id = "./resources/js/Pages sync recursive ^\\.\\/.*$";
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Home/Index.tsc":
+/***/ "./resources/js/Pages/Home/Index.tsx":
 /*!*******************************************!*\
-  !*** ./resources/js/Pages/Home/Index.tsc ***!
+  !*** ./resources/js/Pages/Home/Index.tsx ***!
   \*******************************************/
-/*! no exports provided */
-/***/ (function(module, exports) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module parse failed: Unexpected token (5:8)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n| const Index = () => {\n| \n> \treturn <p>Welcome! You are logged in. </p>;\n| \n| }");
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var Index = function () {
+    return (
+    // <Layout>
+    react_1.default.createElement("p", null, "Welcome to home page")
+    // </Layout>
+    );
+};
+exports.default = Index;
+
 
 /***/ }),
 

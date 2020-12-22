@@ -1,17 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\User\DashboardController;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [WelcomeController::class, 'index'])
+						->name('welcome');
+
+Route::middleware(['auth', 'verified'])->group(function () 
+{
+	Route::get('/dashboard', [DashboardController::class, 'index'])
+								->name('dashboard');
+
 });
-
-Route::get('/dashboard', function () {
-    // return view('dashboard');
-
-    return Inertia::render('Home/Index', [
-        ]);
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
