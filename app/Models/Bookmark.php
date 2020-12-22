@@ -11,4 +11,9 @@ class Bookmark extends Model
 
     protected $guarded = [];
     
+    /*Relationship*/
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

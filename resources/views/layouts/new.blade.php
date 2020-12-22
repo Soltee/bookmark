@@ -11,6 +11,13 @@
   	</head>
 	<body class="font-sans antialiased">
         @include('sweetalert::alert')
-    	@inertia
+        <div class="min-h-screen bg-gray-100">
+            @include('layouts.navigation')
+
+            <!-- Page Content -->
+            <main>
+    	       @inertia
+            </main>
+        </div>
   </body>
 </html>

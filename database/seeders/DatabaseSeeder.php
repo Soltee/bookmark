@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\User::factory(10)->create();
-        \App\Models\Bookmark::factory(10)->create();
+        \App\Models\Bookmark::factory(100)->create();
     }
 }

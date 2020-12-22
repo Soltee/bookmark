@@ -4,6 +4,11 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Bookmark;
+use App\Models\User;
+
+use Inertia\Inertia;
+use Auth;
 
 class BookmarkController extends Controller
 {
@@ -14,7 +19,10 @@ class BookmarkController extends Controller
      */
     public function index()
     {
-        //
+        $bookmarks = Auth::user()->bookmarks()->get();
+        return Inertia::render('User/Bookmark/Index', [
+                'bookmarks' => $bookmarks
+            ]);
     }
 
     /**

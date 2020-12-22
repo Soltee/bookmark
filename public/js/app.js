@@ -52357,6 +52357,30 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/Layouts/Index.tsx":
+/*!****************************************!*\
+  !*** ./resources/js/Layouts/Index.tsx ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var App = function (_a) {
+    var children = _a.children;
+    return (react_1.default.createElement("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" },
+        react_1.default.createElement("main", null, children)));
+};
+exports.default = App;
+
+
+/***/ }),
+
 /***/ "./resources/js/Pages sync recursive ^\\.\\/.*$":
 /*!******************************************!*\
   !*** ./resources/js/Pages sync ^\.\/.*$ ***!
@@ -52365,8 +52389,10 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./Home/Index": "./resources/js/Pages/Home/Index.tsx",
-	"./Home/Index.tsx": "./resources/js/Pages/Home/Index.tsx"
+	"./User/Bookmark/Index": "./resources/js/Pages/User/Bookmark/Index.tsx",
+	"./User/Bookmark/Index.tsx": "./resources/js/Pages/User/Bookmark/Index.tsx",
+	"./User/Home": "./resources/js/Pages/User/Home.tsx",
+	"./User/Home.tsx": "./resources/js/Pages/User/Home.tsx"
 };
 
 
@@ -52391,10 +52417,10 @@ webpackContext.id = "./resources/js/Pages sync recursive ^\\.\\/.*$";
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Home/Index.tsx":
-/*!*******************************************!*\
-  !*** ./resources/js/Pages/Home/Index.tsx ***!
-  \*******************************************/
+/***/ "./resources/js/Pages/User/Bookmark/Index.tsx":
+/*!****************************************************!*\
+  !*** ./resources/js/Pages/User/Bookmark/Index.tsx ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -52405,14 +52431,66 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-var Index = function () {
-    return (
-    // <Layout>
-    react_1.default.createElement("p", null, "Welcome to home page")
-    // </Layout>
-    );
+var Index_1 = __importDefault(__webpack_require__(/*! ../../../Layouts/Index */ "./resources/js/Layouts/Index.tsx"));
+var Index = function (_a) {
+    var bookmarks = _a.bookmarks;
+    return (react_1.default.createElement(Index_1.default, null,
+        react_1.default.createElement("div", null,
+            react_1.default.createElement("div", { className: " overflow-x-auto" },
+                react_1.default.createElement("div", { className: "inline-block min-w-full  rounded-lg overflow-hidden" },
+                    react_1.default.createElement("table", { className: "min-w-full leading-normal" },
+                        react_1.default.createElement("thead", null,
+                            react_1.default.createElement("tr", null,
+                                react_1.default.createElement("th", { className: "px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-custom-light-black uppercase tracking-wider" }, "Title"),
+                                react_1.default.createElement("th", { className: "px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-custom-light-black uppercase tracking-wider" }, "Url"),
+                                react_1.default.createElement("th", { className: "px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-custom-light-black uppercase tracking-wider" }, "Created"),
+                                react_1.default.createElement("th", { className: "px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-right text-xs font-semibold text-custom-light-black uppercase tracking-wider" }, "Action"))),
+                        react_1.default.createElement("tbody", null,
+                            bookmarks.length > 0 && bookmarks.map(function (bookmark, index) {
+                                return (react_1.default.createElement("tr", { key: index },
+                                    react_1.default.createElement("td", { className: "px-5 whitespace-no-wrap py-5 border-b border-gray-200 bg-white text-sm" },
+                                        react_1.default.createElement("p", { className: "text-gray-900 whitespace-no-wrap font-black" }, bookmark.title)),
+                                    react_1.default.createElement("td", { className: "px-5 whitespace-no-wrap py-5 border-b border-gray-200 bg-white text-sm" },
+                                        react_1.default.createElement("p", { className: "text-gray-900 whitespace-no-wrap font-black" }, bookmark.url)),
+                                    react_1.default.createElement("td", { className: "px-5 whitespace-no-wrap py-5 border-b border-gray-200 bg-white text-sm" },
+                                        react_1.default.createElement("p", { className: "text-gray-900 whitespace-no-wrap font-black" }, bookmark.created_at)),
+                                    react_1.default.createElement("td", { className: "px-5 whitespace-no-wrap py-5 border-b border-gray-200 bg-white text-sm" },
+                                        react_1.default.createElement("p", { className: "text-gray-900 whitespace-no-wrap font-black" }))));
+                            }),
+                            bookmarks.length < 1 ?
+                                react_1.default.createElement("tr", null,
+                                    react_1.default.createElement("td", { className: "" },
+                                        react_1.default.createElement("div", { className: " flex flex-col justify-center w-full items-center" },
+                                            react_1.default.createElement("svg", { className: "h-10 w-10 text-red-600", fill: "currentColor", viewBox: "0 0 20 20" },
+                                                react_1.default.createElement("path", { d: "M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM6.5 9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm7 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm2.16 6H4.34a6 6 0 0 1 11.32 0z" })),
+                                            react_1.default.createElement("p", { className: "mt-3" }, "Oops! No Bookmarks yet ."))))
+                                : '')))))));
 };
 exports.default = Index;
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/User/Home.tsx":
+/*!******************************************!*\
+  !*** ./resources/js/Pages/User/Home.tsx ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var Index_1 = __importDefault(__webpack_require__(/*! ../../Layouts/Index */ "./resources/js/Layouts/Index.tsx"));
+var Home = function () {
+    return (react_1.default.createElement(Index_1.default, null,
+        react_1.default.createElement("p", { className: "text-center my-3" }, "Welcome to home page")));
+};
+exports.default = Home;
 
 
 /***/ }),

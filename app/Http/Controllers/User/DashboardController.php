@@ -19,7 +19,7 @@ class DashboardController extends Controller
 	/*Inertia : Home Page*/
 	public function index()
 	{
-		return Inertia::render('Home/Index', [
+		return Inertia::render('User/Home', [
         	
         	]);
 	}

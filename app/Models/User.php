@@ -40,4 +40,10 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /*Relationship*/
+    public function bookmarks()
+    {
+        return $this->hasMany(Bookmark::class);
+    }
 }
