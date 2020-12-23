@@ -52,9 +52,8 @@ const Index: React.FC<Props> = ({ bookmarks }) => {
 					        		return (
 					        			<tr key={index}>
 					                        <td className="px-5 whitespace-no-wrap py-5 border-b border-gray-200 bg-white text-sm">
-					                            <p className="text-gray-900 whitespace-no-wrap font-black">
-					        						{bookmark.title}
-					                            </p>
+					                            	{bookmark.title}
+												
 					                        </td>
 					                        <td className="px-5 whitespace-no-wrap py-5 border-b border-gray-200 bg-white text-sm">
 					                            <p className="text-gray-900 whitespace-no-wrap font-black">

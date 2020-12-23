@@ -52393,6 +52393,8 @@ var map = {
 	"./User/Bookmark/Add.tsx": "./resources/js/Pages/User/Bookmark/Add.tsx",
 	"./User/Bookmark/Index": "./resources/js/Pages/User/Bookmark/Index.tsx",
 	"./User/Bookmark/Index.tsx": "./resources/js/Pages/User/Bookmark/Index.tsx",
+	"./User/Bookmark/Show": "./resources/js/Pages/User/Bookmark/Show.tsx",
+	"./User/Bookmark/Show.tsx": "./resources/js/Pages/User/Bookmark/Show.tsx",
 	"./User/Home": "./resources/js/Pages/User/Home.tsx",
 	"./User/Home.tsx": "./resources/js/Pages/User/Home.tsx"
 };
@@ -52486,7 +52488,7 @@ var Add = function (_a) {
                 react_1.default.createElement("form", { action: "#", method: "POST" },
                     react_1.default.createElement("div", { className: "flex justify-between items-center my-3" },
                         react_1.default.createElement("h3", { className: "font-bold text-xl" }, "New"),
-                        react_1.default.createElement("button", { onClick: handleForm, className: "border-b mb-2 hover:border-gray-900" }, "Add")),
+                        react_1.default.createElement("button", { onClick: handleForm, className: "bg-green-600 hover:bg-green-500 border-b mb-2 rounded-lg px-3 py-3 text-white" }, "Add")),
                     react_1.default.createElement("div", { className: "shadow sm:rounded-md sm:overflow-hidden" },
                         react_1.default.createElement("div", { className: "px-4 py-5 bg-white space-y-6 sm:p-6" },
                             react_1.default.createElement("div", { className: "grid grid-cols-3 gap-6" },
@@ -52535,8 +52537,7 @@ var Index = function (_a) {
                         react_1.default.createElement("tbody", null,
                             bookmarks.length > 0 && bookmarks.map(function (bookmark, index) {
                                 return (react_1.default.createElement("tr", { key: index },
-                                    react_1.default.createElement("td", { className: "px-5 whitespace-no-wrap py-5 border-b border-gray-200 bg-white text-sm" },
-                                        react_1.default.createElement("p", { className: "text-gray-900 whitespace-no-wrap font-black" }, bookmark.title)),
+                                    react_1.default.createElement("td", { className: "px-5 whitespace-no-wrap py-5 border-b border-gray-200 bg-white text-sm" }, bookmark.title),
                                     react_1.default.createElement("td", { className: "px-5 whitespace-no-wrap py-5 border-b border-gray-200 bg-white text-sm" },
                                         react_1.default.createElement("p", { className: "text-gray-900 whitespace-no-wrap font-black" }, bookmark.url)),
                                     react_1.default.createElement("td", { className: "px-5 whitespace-no-wrap py-5 border-b border-gray-200 bg-white text-sm" },
@@ -52554,6 +52555,57 @@ var Index = function (_a) {
                                 : '')))))));
 };
 exports.default = Index;
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/User/Bookmark/Show.tsx":
+/*!***************************************************!*\
+  !*** ./resources/js/Pages/User/Bookmark/Show.tsx ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var inertia_1 = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+var Index_1 = __importDefault(__webpack_require__(/*! ../../../Layouts/Index */ "./resources/js/Layouts/Index.tsx"));
+var Show = function (_a) {
+    var bookmark = _a.bookmark, user = _a.user;
+    var handleSave = function (event) {
+        event.preventDefault();
+        inertia_1.Inertia.post("/bookmarks/make_active", { id: bookmark.id });
+    };
+    var handleDestroy = function (event) {
+        event.preventDefault();
+        // Inertia.delete("/bookmarks/")
+    };
+    return (react_1.default.createElement(Index_1.default, null,
+        react_1.default.createElement("div", null,
+            react_1.default.createElement("div", { className: "mt-5 md:mt-0 md:col-span-2" },
+                react_1.default.createElement("div", { className: "flex justify-between items-center my-3" },
+                    react_1.default.createElement("h3", { className: "font-bold text-xl" }, bookmark.title),
+                    react_1.default.createElement("button", { onClick: handleDestroy, className: "bg-red-600 hover:bg-red-500 border-b mb-2 rounded-lg px-3 py-3 text-white" }, "Delete")),
+                react_1.default.createElement("div", { className: "my-3" },
+                    react_1.default.createElement("div", { className: "bg-white shadow-2xl rounded" },
+                        react_1.default.createElement("div", null,
+                            react_1.default.createElement("img", { src: bookmark.img_url, className: "w-full h-64 rounded-t object-cover object-center" })),
+                        react_1.default.createElement("div", { className: "px-4 py-2 mt-2 bg-white rounded-b" },
+                            react_1.default.createElement("h2", { className: "font-bold text-2xl text-gray-800" }, bookmark.title),
+                            react_1.default.createElement("p", { className: "sm:text-sm text-md text-gray-700 px-2 mr-1 my-3" }, bookmark.description),
+                            bookmark.is_active ?
+                                react_1.default.createElement("div", { className: "flex items-center rounded-lg" },
+                                    react_1.default.createElement("label", { className: "bg-gray-900 hover:bg-gray-900 border-b mb-2 rounded-l px-3 py-3 text-white" }, "Status"),
+                                    react_1.default.createElement("span", { className: "bg-green-600 hover:bg-green-500 border-b mb-2 rounded-r px-6 py-3 text-white" }, "Active"))
+                                :
+                                    react_1.default.createElement("button", { onClick: handleSave, className: "bg-blue-600 hover:bg-blue-500 border-b mb-2 rounded-lg px-3 py-3 text-white" }, "Set As Active"))))))));
+};
+exports.default = Show;
 
 
 /***/ }),

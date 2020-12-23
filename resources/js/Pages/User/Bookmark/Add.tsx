@@ -35,7 +35,7 @@ const Add: React.FC<Props> = ({  }) => {
 							<h3 className="font-bold text-xl">New</h3>
 							<button
 								onClick={handleForm}
-								className="border-b mb-2 hover:border-gray-900"
+								className="bg-green-600 hover:bg-green-500 border-b mb-2 rounded-lg px-3 py-3 text-white"
 								>Add
 							</button>
 						</div>

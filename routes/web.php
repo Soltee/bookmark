@@ -19,8 +19,12 @@ Route::middleware(['auth', 'verified'])->group(function ()
 								->name('bookmarks');
 	Route::get('/bookmarks/add', [BookmarkController::class, 'add'])
 								->name('bookmarks.add');	
+	Route::get('/bookmarks/{bookmark}', [BookmarkController::class, 'show'])
+								->name('bookmarks.show');							
 	Route::post('/bookmarks', [BookmarkController::class, 'store'])
-								->name('bookmarks.preview');							
+								->name('bookmarks.store');
+	Route::post('/bookmarks/make_active', [BookmarkController::class, 'make_active'])
+								->name('bookmarks.active');
 
 });
 
