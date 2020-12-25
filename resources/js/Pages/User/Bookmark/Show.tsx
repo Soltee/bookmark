@@ -51,7 +51,7 @@ const Show: React.FC<Props> = ({ bookmark, user }) => {
 					                	{bookmark.description}
 					                </p>
 
-					            {bookmark.is_active ?
+					            {bookmark.is_active === '1' ?
 					            		<div className="flex items-center rounded-lg">
 						            		<label
 												className="bg-gray-900 hover:bg-gray-900 border-b mb-2 rounded-l px-3 py-3 text-white"

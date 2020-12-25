@@ -24,7 +24,7 @@ class BookmarkStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'url'    => 'required|url',
+            'url'    => 'required|url|unique:bookmarks',
         ];
     }
 }

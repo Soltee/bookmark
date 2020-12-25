@@ -54,19 +54,23 @@ class BookmarkController extends Controller
     public function store(BookmarkStoreRequest $request)
     {
         // return $request->validated();
-        $validated = $request->validated();
+        $validated  = $request->validated();
 
-        $data = OpenGraph::fetch($validated['url'], true);
+        $data       = OpenGraph::fetch($validated['url'], true);
 
         // return $data;
+        // $titleArr   = ['title' => $data['title']];
+        $descrArr   = ['description' => $data['description']];
+        $typeArr    = ['type' => $data['type']];
 
-        $bookmark = Auth::user()->bookmarks()->create([
-                'title'            => $data['title'],
-                'type'             => $data['type'],
-                'description'      => $data['description'],
+        $bookmark = Auth::user()->bookmarks()->create(array_merge([
+                'title'            => $data['title'] || '',
                 'url'              => $validated['url'],
-                'img_url'          => $data['image'],
-            ]);
+                'img_url'          => $data['image']
+            ]), 
+            $descrArr ?? [],
+            $typeArr  ?? [],
+        );
 
         return redirect()
                 ->route('bookmarks.show', ['bookmark' => $bookmark->id]);
@@ -140,7 +144,7 @@ class BookmarkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
         //
     }

@@ -16,7 +16,8 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "realrashid/sweet-alert": "^3.2",
-        "shweshi/opengraph": "^1.1"
+        "shweshi/opengraph": "^1.1",
+        "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
