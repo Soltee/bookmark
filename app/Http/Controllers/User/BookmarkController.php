@@ -27,7 +27,7 @@ class BookmarkController extends Controller
                             ->latest()
                             // ->where('is_active', 1)
                             // ->orderByDesc('updated_at')
-                            ->paginate(1);
+                            ->paginate(2);
         return Inertia::render('User/Bookmark/Index', [
                 'bookmarks' => $bookmarks->items(),
                 'prev'      => $bookmarks->previousPageUrl(),

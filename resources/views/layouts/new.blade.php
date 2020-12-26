@@ -6,6 +6,8 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{ config('app.name', 'Laravel') }}</title>
         @routes
+
+        <link rel="icon" href="{{ asset('/img/bookmark.svg') }}">
     	<link href="{{ mix('/css/app.css') }}" rel="stylesheet" />
   	</head>
 	<body class="font-sans antialiased">

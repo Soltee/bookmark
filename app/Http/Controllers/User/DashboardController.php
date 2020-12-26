@@ -25,8 +25,15 @@ class DashboardController extends Controller
                             ->latest()
                             ->take(5)
                             ->get();
+        $active       = Auth::user()->bookmarks()->where('is_active', true)->count();
+        $inactive     = Auth::user()->bookmarks()->where('is_active', false)->count();
+        $total        = Auth::user()->bookmarks()->count();
+
 		return Inertia::render('User/Home', [
-        		'bookmarks'     => $bookmarks
+        		'bookmarks'     => $bookmarks,
+        		'active'        => $active,        		
+        		'inactive'      => $inactive,        		
+        		'total'         => $total,
         	]);
 	}
 }

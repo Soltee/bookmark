@@ -5,7 +5,13 @@ import route from 'ziggy-js';
 import dayjs from 'dayjs' // ES 2015
 
 interface Props {
-	bookmarks : Array<any>
+	bookmarks : Array<any>,
+	prev      : String<any>, 
+	next      : String, 
+	current   : Number, 
+	first     : Number,
+	last      : Number,
+	total     : Number
 	// bookmarks : any
 }
 

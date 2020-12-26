@@ -3,7 +3,9 @@ import App from '../../../Layouts/Index';
 import { Inertia } from '@inertiajs/inertia'
 import { usePage } from '@inertiajs/inertia-react'
 
-interface Props {}
+interface Props {
+	errors : Array
+}
 
 const Add: React.FC<Props> = ({errors}) => {
   	// const { errors } = usePage().props
