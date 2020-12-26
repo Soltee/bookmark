@@ -97502,7 +97502,9 @@ var Index = function (_a) {
                                 react_1.default.createElement("h1", { className: "text-xl  m-0 mr-3 font-bold" }, bookmark.title)),
                             react_1.default.createElement("p", { className: "w-auto md:w-full text-md rounded  mt-2 md:mt-0 md:p-2 text-gray-800" }, format(bookmark.created_at))),
                         react_1.default.createElement("p", { className: "text-md text-gray-900 font-bold mt-4 text-left" }, bookmark.description),
-                        react_1.default.createElement(inertia_react_1.InertiaLink, { href: bookmark.url },
+                        react_1.default.createElement("a", { href: ziggy_js_1.default("bookmark.redirect", {
+                                bookmark: bookmark.id
+                            }), target: "_blank" },
                             react_1.default.createElement("h1", { className: "mt-5 w-32 text-center text-md border border-gray-500 hover:bg-gray-600 hover:text-white rounded-lg text-gray-900  m-0 px-3 py-3 font-bold" }, "Visit")))));
             }),
             bookmarks.length < 1 &&

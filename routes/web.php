@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\Helpers\HelperController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\BookmarkController;
 
@@ -28,6 +29,9 @@ Route::middleware(['auth', 'verified'])->group(function ()
 
 	Route::delete('/bookmarks/{bookmark}', [BookmarkController::class, 'destroy']);
 
+	//Helpers
+	Route::get('/bookmarks/redirect/{bookmark}', [BookmarkController::class, 'redirect'])
+									->name('bookmark.redirect');
 
 });
 

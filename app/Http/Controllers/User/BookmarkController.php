@@ -12,6 +12,7 @@ use Auth;
 use App\Http\Requests\BookmarkStoreRequest;
 use App\Http\Requests\BookmarkMakeActiveRequest;
 use OpenGraph;
+use DB;
 
 class BookmarkController extends Controller
 {
@@ -144,6 +145,22 @@ class BookmarkController extends Controller
                 ->with('success', 'Bookmark is set as active');
     }
 
+    /** Redirect **/
+    public function redirect(Bookmark $bookmark)
+    {
+        if(Auth::user()->id != $bookmark->user_id)
+        {
+            abort(401, 'You are unauthorized');
+            return redirect()->back();
+        }
+
+        DB::table($bookmark->getTable())
+            ->where('id', $bookmark->id)
+            ->increment('views');
+
+        return redirect($bookmark->url);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -153,7 +170,7 @@ class BookmarkController extends Controller
     public function destroy(Bookmark $bookmark)
     {
         // dd($bookmark);
-        // $bookmark->delete();
+        $bookmark->delete();
         return redirect()
                     ->route('bookmarks')
                     ->with('success', 'Bookmark was removed from records.');

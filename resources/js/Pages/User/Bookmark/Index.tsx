@@ -62,11 +62,17 @@ const Index: React.FC<Props> = ({ bookmarks, prev, next, current, first,last, to
 						        </div>
 
 						      	<p className="text-md text-gray-900 font-bold mt-4 text-left">{bookmark.description}</p>
-						    	<InertiaLink href={bookmark.url}>
+						    	{/*<InertiaLink href={bookmark.url}>*/}
+						    	<a
+						            href={route("bookmark.redirect", {
+						              bookmark: bookmark.id
+						            })}
+						            target="_blank">
 								    <h1 className="mt-5 w-32 text-center text-md border border-gray-500 hover:bg-gray-600 hover:text-white rounded-lg text-gray-900  m-0 px-3 py-3 font-bold">
 								    	Visit
 								    </h1>
-								</InertiaLink>
+								</a>
+								{/*</InertiaLink>*/}
 						    </div>
 						</div>
 	            	)}
