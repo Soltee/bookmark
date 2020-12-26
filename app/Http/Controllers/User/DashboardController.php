@@ -19,8 +19,14 @@ class DashboardController extends Controller
 	/*Inertia : Home Page*/
 	public function index()
 	{
+
+		$bookmarks = Auth::user()
+                            ->bookmarks()
+                            ->latest()
+                            ->take(5)
+                            ->get();
 		return Inertia::render('User/Home', [
-        	
+        		'bookmarks'     => $bookmarks
         	]);
 	}
 }

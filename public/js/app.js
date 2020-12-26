@@ -53271,7 +53271,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var App = function (_a) {
     var children = _a.children;
-    return (react_1.default.createElement("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" },
+    return (react_1.default.createElement("div", { className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" },
         react_1.default.createElement("main", null, children)));
 };
 exports.default = App;
@@ -53363,9 +53363,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-var inertia_1 = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
 var Index_1 = __importDefault(__webpack_require__(/*! ../../../Layouts/Index */ "./resources/js/Layouts/Index.tsx"));
+var inertia_1 = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
 var Add = function (_a) {
+    var errors = _a.errors;
+    // const { errors } = usePage().props
     var _b = react_1.useState({
         url: '',
         title: 'Some title'
@@ -53389,11 +53391,13 @@ var Add = function (_a) {
                         react_1.default.createElement("button", { onClick: handleForm, className: "bg-green-600 hover:bg-green-500 border-b mb-2 rounded-lg px-3 py-3 text-white" }, "Add")),
                     react_1.default.createElement("div", { className: "shadow sm:rounded-md sm:overflow-hidden" },
                         react_1.default.createElement("div", { className: "px-4 py-5 bg-white space-y-6 sm:p-6" },
-                            react_1.default.createElement("div", { className: "grid grid-cols-3 gap-6" },
+                            react_1.default.createElement("div", { className: "grid grid-cols-3 gap-6 flex items-center" },
                                 react_1.default.createElement("label", { htmlFor: "url", className: "block text-sm font-medium text-gray-700" }, "URL"),
                                 react_1.default.createElement("div", { className: "mt-1 flex rounded-md shadow-sm" },
-                                    react_1.default.createElement("span", { className: "inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm" }),
-                                    react_1.default.createElement("input", { type: "text", id: "url", value: state.url, className: "focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300", placeholder: "www.example.com", onChange: handleChange }))))))))));
+                                    react_1.default.createElement("input", { type: "text", id: "url", value: state.url, className: errors.url ? 'border border-red-500' : 'focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300', placeholder: "www.example.com", onChange: handleChange }))),
+                            react_1.default.createElement("div", { className: "grid grid-cols-3 gap-6  flex items-center" },
+                                react_1.default.createElement("label", { className: "block text-sm font-medium text-gray-700" }),
+                                react_1.default.createElement("div", { className: "mt-1 flex rounded-md shadow-sm" }, errors.url && react_1.default.createElement("div", { className: "text-red-600 text-md" }, errors.url))))))))));
 };
 exports.default = Add;
 
@@ -53419,26 +53423,49 @@ var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./nod
 var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
 var dayjs_1 = __importDefault(__webpack_require__(/*! dayjs */ "./node_modules/dayjs/dayjs.min.js")); // ES 2015
 var Index = function (_a) {
-    var bookmarks = _a.bookmarks;
+    var bookmarks = _a.bookmarks, prev = _a.prev, next = _a.next, current = _a.current, first = _a.first, last = _a.last, total = _a.total;
     var format = function (date) {
         return dayjs_1.default(date).format('ddd MMM YYYY');
     };
     return (react_1.default.createElement(Index_1.default, null,
-        react_1.default.createElement("div", null,
+        react_1.default.createElement("div", { className: "w-full" },
             react_1.default.createElement("div", { className: "flex justify-between items-center my-3" },
                 react_1.default.createElement("h3", { className: "font-bold text-xl" }, "Bookmarks"),
                 react_1.default.createElement(inertia_react_1.InertiaLink, { href: "/bookmarks/add", preserveState: true, className: "border-b mb-2 hover:border-gray-900" }, "+ Add New")),
             bookmarks.length > 0 && bookmarks.map(function (bookmark, index) {
                 return (react_1.default.createElement("div", { key: index, className: "flex flex-col md:flex-row mb-12 rounded w-full bg-gray-300 shadow" },
-                    react_1.default.createElement(inertia_react_1.InertiaLink, { href: ziggy_js_1.default('bookmarks.show', { bookmark: bookmark.id }) },
-                        react_1.default.createElement("img", { src: bookmark.img_url, alt: bookmark.title, className: "object-cover hover:opacity-75 rounded-t md:rounded-none md:rounded-l h-64 w-full" })),
-                    react_1.default.createElement("div", { className: "rounded-r p-3" },
-                        react_1.default.createElement("div", { className: "flex items-center md:justify-between" },
+                    react_1.default.createElement("div", { className: "w-full md:w-64" },
+                        react_1.default.createElement(inertia_react_1.InertiaLink, { href: ziggy_js_1.default('bookmarks.show', { bookmark: bookmark.id }) },
+                            react_1.default.createElement("img", { src: bookmark.img_url, alt: bookmark.title, className: "object-cover hover:opacity-75 rounded-t md:rounded-none md:rounded-l h-64 w-full" }))),
+                    react_1.default.createElement("div", { className: "rounded-r p-3 flex-1 flex flex-col" },
+                        react_1.default.createElement("div", { className: "flex flex-col md:flex-row md:items-center md:justify-between" },
                             react_1.default.createElement(inertia_react_1.InertiaLink, { href: ziggy_js_1.default('bookmarks.show', { bookmark: bookmark.id }) },
                                 react_1.default.createElement("h1", { className: "text-xl  m-0 mr-3 font-bold" }, bookmark.title)),
-                            react_1.default.createElement("p", { className: "text-md rounded bg-green-600 p-2 text-white" }, format(bookmark.created_at))),
-                        react_1.default.createElement("p", { className: "text-md mt-2 text-left" }, bookmark.description))));
-            }))));
+                            react_1.default.createElement("p", { className: "w-auto md:w-full text-md rounded  mt-2 md:mt-0 md:p-2 text-gray-800" }, format(bookmark.created_at))),
+                        react_1.default.createElement("p", { className: "text-md text-gray-900 font-bold mt-4 text-left" }, bookmark.description),
+                        react_1.default.createElement(inertia_react_1.InertiaLink, { href: bookmark.url },
+                            react_1.default.createElement("h1", { className: "mt-5 w-32 text-center text-md border border-gray-500 hover:bg-gray-600 hover:text-white rounded-lg text-gray-900  m-0 px-3 py-3 font-bold" }, "Visit")))));
+            }),
+            bookmarks.length < 1 &&
+                react_1.default.createElement("div", { className: " flex flex-col justify-center w-full items-center my-6" },
+                    react_1.default.createElement("svg", { className: "h-10 w-10 text-red-600", stroke: "1", fill: "currentColor", viewBox: "0 0 20 20" },
+                        react_1.default.createElement("path", { d: "M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM6.5 9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm7 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm2.16 6H4.34a6 6 0 0 1 11.32 0z" })),
+                    react_1.default.createElement("p", { className: "mt-3" }, "Oops! No Bookmarks yet .")),
+            react_1.default.createElement("div", { className: "flex justify-between items-center my-5" },
+                react_1.default.createElement("div", { className: "flex items-center text-md font-semibold text-gray-900" },
+                    "Showing ",
+                    first,
+                    " - ",
+                    last,
+                    " of ",
+                    total),
+                react_1.default.createElement("div", { className: "flex items-center text-md font-semibold" },
+                    prev &&
+                        react_1.default.createElement(inertia_react_1.InertiaLink, { href: prev, preserveScroll: true },
+                            react_1.default.createElement("span", { className: "px-3 py-3 rounded border border-gray-300 text-gray-900 hover:border-gray-600" }, "Prev")),
+                    next &&
+                        react_1.default.createElement(inertia_react_1.InertiaLink, { href: next, preserveScroll: true },
+                            react_1.default.createElement("span", { className: "px-3 py-3 rounded border border-gray-300 text-gray-900 hover:border-gray-600" }, "Next")))))));
 };
 exports.default = Index;
 
@@ -53511,7 +53538,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var Index_1 = __importDefault(__webpack_require__(/*! ../../Layouts/Index */ "./resources/js/Layouts/Index.tsx"));
-var Home = function () {
+var Home = function (_a) {
+    var bookmarks = _a.bookmarks;
     return (react_1.default.createElement(Index_1.default, null,
         react_1.default.createElement("p", { className: "text-center my-3" }, "Welcome to home page")));
 };

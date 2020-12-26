@@ -1,7 +1,12 @@
 import React from 'react';
 import App from '../../Layouts/Index';
 
-const Home = () => {
+interface Props {
+	bookmarks : Array<any>
+	// bookmarks : any
+}
+
+const Home:React.FC<Props> = ({ bookmarks }) => {
 
 	return (
 	    <App>

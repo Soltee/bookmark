@@ -9,7 +9,7 @@ interface Props {
 	// bookmarks : any
 }
 
-const Index: React.FC<Props> = ({ bookmarks }) => {
+const Index: React.FC<Props> = ({ bookmarks, prev, next, current, first,last, total }) => {
 
 	const format = (date) => {
 		return dayjs(date).format('ddd MMM YYYY');
@@ -19,7 +19,7 @@ const Index: React.FC<Props> = ({ bookmarks }) => {
 	return (
 		<App>
 
-			<div>
+			<div className="w-full">
 				<div className="flex justify-between items-center my-3">
 					<h3 className="font-bold text-xl">Bookmarks</h3>
 					<InertiaLink 
@@ -35,30 +35,70 @@ const Index: React.FC<Props> = ({ bookmarks }) => {
 	                    <div 
 	                    	key={index}
 	                    	className="flex flex-col md:flex-row mb-12 rounded w-full bg-gray-300 shadow">
-						    <InertiaLink href={route('bookmarks.show', {bookmark :bookmark.id})}>
+	                    	<div className="w-full md:w-64">
+							    <InertiaLink href={route('bookmarks.show', {bookmark :bookmark.id})}>
 
-					            <img 
-							        src={bookmark.img_url} 
-							        alt={bookmark.title}         
-							        className="object-cover hover:opacity-75 rounded-t md:rounded-none md:rounded-l h-64 w-full" />
-					        
-					        </InertiaLink>
-
-						    <div className="rounded-r p-3">
-						        <div className="flex items-center md:justify-between">
+						            <img 
+								        src={bookmark.img_url} 
+								        alt={bookmark.title}         
+								        className="object-cover hover:opacity-75 rounded-t md:rounded-none md:rounded-l h-64 w-full" />
+						        
+						        </InertiaLink>
+					        </div>
+						    <div className="rounded-r p-3 flex-1 flex flex-col">
+						        <div className="flex flex-col md:flex-row md:items-center md:justify-between">
 						        
 								    <InertiaLink href={route('bookmarks.show', {bookmark :bookmark.id})}>
 								        <h1 className="text-xl  m-0 mr-3 font-bold">{bookmark.title}</h1>
 								    </InertiaLink>
-								    <p className="text-md rounded bg-green-600 p-2 text-white">{format(bookmark.created_at)}</p>
+								    <p className="w-auto md:w-full text-md rounded  mt-2 md:mt-0 md:p-2 text-gray-800">{format(bookmark.created_at)}</p>
 
 						        </div>
 
-						      <p className="text-md mt-2 text-left">{bookmark.description}</p>
+						      	<p className="text-md text-gray-900 font-bold mt-4 text-left">{bookmark.description}</p>
+						    	<InertiaLink href={bookmark.url}>
+								    <h1 className="mt-5 w-32 text-center text-md border border-gray-500 hover:bg-gray-600 hover:text-white rounded-lg text-gray-900  m-0 px-3 py-3 font-bold">
+								    	Visit
+								    </h1>
+								</InertiaLink>
 						    </div>
 						</div>
 	            	)}
 	            )}
+
+	            {bookmarks.length < 1  &&
+                    <div className=" flex flex-col justify-center w-full items-center my-6">
+				      	<svg className="h-10 w-10 text-red-600" stroke="1" fill="currentColor" viewBox="0 0 20 20">
+				      		<path d="M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM6.5 9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm7 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm2.16 6H4.34a6 6 0 0 1 11.32 0z"/></svg>
+				      	<p className="mt-3">Oops! No Bookmarks yet .</p>
+                    </div>
+                }
+
+            {/*Pagination*/}
+
+            	<div className="flex justify-between items-center my-5">
+
+            		<div className="flex items-center text-md font-semibold text-gray-900">
+            			Showing {first} - {last} of {total} 
+            		</div>
+
+            		<div className="flex items-center text-md font-semibold">
+            			{prev && 
+            				<InertiaLink href={prev} preserveScroll>
+	            				<span className="px-3 py-3 rounded border border-gray-300 text-gray-900 hover:border-gray-600">
+	            					Prev
+	            				</span>
+	            			</InertiaLink>
+            			}
+            			{next && 
+	            			<InertiaLink href={next} preserveScroll>
+	            				<span className="px-3 py-3 rounded border border-gray-300 text-gray-900 hover:border-gray-600">
+	            					Next
+	            				</span>
+	            			</InertiaLink>
+            			}
+            		</div>
+            	</div>
 
 				{/*Table Layouts*/}
 		        {/*<div  className=" overflow-x-auto">

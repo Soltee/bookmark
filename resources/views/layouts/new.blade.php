@@ -10,7 +10,7 @@
   	</head>
 	<body class="font-sans antialiased">
         @include('sweetalert::alert')
-        <div class="min-h-screen bg-gray-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             @include('layouts.navigation')
 
             <!-- Page Content -->

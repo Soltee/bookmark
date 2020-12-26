@@ -25,11 +25,17 @@ class BookmarkController extends Controller
         $bookmarks = Auth::user()
                             ->bookmarks()
                             ->latest()
-                            ->where('is_active', 1)
+                            // ->where('is_active', 1)
                             // ->orderByDesc('updated_at')
-                            ->get();
+                            ->paginate(1);
         return Inertia::render('User/Bookmark/Index', [
-                'bookmarks' => $bookmarks
+                'bookmarks' => $bookmarks->items(),
+                'prev'      => $bookmarks->previousPageUrl(),
+                'current'   => $bookmarks->currentPage(),
+                'first'     => $bookmarks->firstItem(),
+                'last'      => $bookmarks->lastItem(),
+                'next'      => $bookmarks->nextPageUrl(),
+                'total'     => $bookmarks->total()
             ]);
     }
 
@@ -60,19 +66,23 @@ class BookmarkController extends Controller
 
         // return $data;
         // $titleArr   = ['title' => $data['title']];
-        $descrArr   = ['description' => $data['description']];
-        $typeArr    = ['type' => $data['type']];
+        // $descrArr   = ['description' => $data['description']];
+        // $typeArr    = ['type' => $data['type']];
 
-        $bookmark = Auth::user()->bookmarks()->create(array_merge([
-                'title'            => $data['title'] || '',
+        $title         = $data['title'] ?? $validated['url'];
+        $type          = $data['type'] ?? '';
+        $descr         = $data['description'] ?? '';
+
+        $bookmark = Auth::user()->bookmarks()->create([
+                'title'            => $title,
                 'url'              => $validated['url'],
-                'img_url'          => $data['image']
-            ]), 
-            $descrArr ?? [],
-            $typeArr  ?? [],
-        );
+                'img_url'          => $data['image'],
+                'type'             => $type,
+                'description'      => $descr
+            ]);
 
         return redirect()
+                // ->back()->with('success', 'Bookmark added');
                 ->route('bookmarks.show', ['bookmark' => $bookmark->id]);
     }
 
