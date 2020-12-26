@@ -53496,7 +53496,21 @@ var Show = function (_a) {
     };
     var handleDestroy = function (event) {
         event.preventDefault();
-        // Inertia.delete("/bookmarks/")
+        inertia_1.Inertia.delete("/bookmarks/" + bookmark.id);
+        // axios.delete(`/bookmarks/${bookmark.id}`)
+        // .then(res => {
+        // 	console.log(res);
+        // 	if(res.status === 204)
+        // 	{
+        // 		swal({
+        // 		  content: <div className="text-green-600 text-lg">Bookmark removed.</div>,
+        // 		  buttons: true,
+        // 		  icon   : 'success'
+        // 		});
+        // 	}
+        // }).catch(err  => {
+        // 	console.log('Error');
+        // });
     };
     return (react_1.default.createElement(Index_1.default, null,
         react_1.default.createElement("div", null,

@@ -26,6 +26,9 @@ Route::middleware(['auth', 'verified'])->group(function ()
 	Route::post('/bookmarks/make_active', [BookmarkController::class, 'make_active'])
 								->name('bookmarks.active');
 
+	Route::delete('/bookmarks/{bookmark}', [BookmarkController::class, 'destroy']);
+
+
 });
 
 require __DIR__.'/auth.php';

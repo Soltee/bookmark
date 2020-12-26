@@ -1,6 +1,8 @@
 import React , { useState } from 'react';
 import { Inertia } from '@inertiajs/inertia'
 import App from '../../../Layouts/Index';
+import axios from 'axios';
+import swal from '@sweetalert/with-react';
 
 interface Props {
 	bookmark : any,
@@ -20,7 +22,24 @@ const Show: React.FC<Props> = ({ bookmark, user }) => {
 	const handleDestroy = (event: React.MouseEvent) => {
 		event.preventDefault();
 
-		// Inertia.delete("/bookmarks/")
+		Inertia.delete(`/bookmarks/${bookmark.id}`);
+
+		
+		// axios.delete(`/bookmarks/${bookmark.id}`)
+		// .then(res => {
+		// 	console.log(res);
+		// 	if(res.status === 204)
+		// 	{
+		// 		swal({
+		// 		  content: <div className="text-green-600 text-lg">Bookmark removed.</div>,
+		// 		  buttons: true,
+		// 		  icon   : 'success'
+		// 		});
+		// 	}
+		// }).catch(err  => {
+		// 	console.log('Error');
+		// });
+
 	}
 
 	return (

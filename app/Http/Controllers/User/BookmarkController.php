@@ -65,10 +65,6 @@ class BookmarkController extends Controller
         $data       = OpenGraph::fetch($validated['url'], true);
 
         // return $data;
-        // $titleArr   = ['title' => $data['title']];
-        // $descrArr   = ['description' => $data['description']];
-        // $typeArr    = ['type' => $data['type']];
-
         $title         = $data['title'] ?? $validated['url'];
         $type          = $data['type'] ?? '';
         $descr         = $data['description'] ?? '';
@@ -154,8 +150,15 @@ class BookmarkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy(Bookmark $bookmark)
     {
-        //
+        // dd($bookmark);
+        // $bookmark->delete();
+        return redirect()
+                    ->route('bookmarks')
+                    ->with('success', 'Bookmark was removed from records.');
+        // return response()->json([], 204);
+        // return redirect()->back()
+        //         ->with('success', 'Bookmark was removed from records.');            
     }
 }
